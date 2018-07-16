@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="www.thymeleaf.org">
+<html lang="en" xmlns:th="www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8"/>
     <title>Title</title>
@@ -10,6 +10,8 @@ Title :<span th:text="${course.title}"></span><br/>
 Instructor : <span th:text="${course.instructor}"></span><br/>
 Description : <p th:text="${course.description}"></p><br/>
 Credits : <span th:text="${course.credit}"></span><br/>
-<a th:href="@{/delete/{id}(id=${course.id})}">Delete this course</a>
+ <div sec:authorize="hasAuthority('ADMIN')">
+    <a th:href="@{/delete/{id}(id=${course.id})}">Delete this course</a>
+ </div>
 </body>
 </html>
